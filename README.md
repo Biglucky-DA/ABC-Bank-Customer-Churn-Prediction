@@ -1,91 +1,106 @@
-ABC Bank – Customer Churn Prediction
+# ABC Bank – Customer Churn Prediction
 
-Dự án phân tích & dự đoán khách hàng rời bỏ (Churn)
+## Giới thiệu
+Dự án nhằm phân tích hành vi rời bỏ (churn) của khách hàng tại ngân hàng ABC. Thông qua việc khai thác dữ liệu nhân khẩu học, hành vi sử dụng sản phẩm và yếu tố địa lý, dự án xây dựng mô hình dự đoán churn giúp ngân hàng xác định sớm khách hàng có nguy cơ cao và đưa ra các chiến lược giữ chân phù hợp.
 
-📌 Giới thiệu
+## Mục tiêu dự án
+- Hiểu các yếu tố dẫn đến churn.
+- Phát hiện nhóm khách hàng có churn rate cao.
+- Xây dựng mô hình Machine Learning dự đoán churn.
+- Đề xuất các giải pháp giữ chân dựa trên dữ liệu.
 
-Dự án nhằm phân tích các yếu tố khiến khách hàng rời bỏ ngân hàng ABC, đồng thời xây dựng mô hình dự đoán churn giúp ngân hàng nhận diện khách hàng có nguy cơ cao để đưa ra chiến lược giữ chân phù hợp.
+## Quy trình thực hiện
 
-🎯 Mục tiêu chính
+### 1. Thu thập và tiền xử lý dữ liệu
+- Dữ liệu gồm hơn 10.000 khách hàng.
+- Thực hiện:
+  - Xử lý giá trị thiếu.
+  - Chuẩn hóa dữ liệu.
+  - Mã hóa biến phân loại.
+  - Feature engineering.
 
-Xác định các nhóm khách hàng có tỷ lệ rời bỏ cao.
+### 2. Khám phá dữ liệu (EDA)
+Một số insights nổi bật:
+- Nhóm nữ 50–60 tuổi có churn rate cao nhất (~63%).
+- Khách hàng dùng 3–4 sản phẩm có churn rate rất cao (82.7% – 100%).
+- Khách hàng tại Đức có churn rate gần gấp đôi Pháp và Tây Ban Nha (~32% vs ~16%).
+- Khách hàng có tenure ≤ 1 năm dễ rời bỏ hơn.
 
-Phân tích các yếu tố ảnh hưởng đến churn: nhân khẩu học, hành vi sử dụng sản phẩm, khu vực địa lý…
+### 3. Xây dựng mô hình dự đoán
+Các mô hình thử nghiệm:
+- Logistic Regression
+- Random Forest
+- Gradient Boosting
+- XGBoost
 
-Xây dựng mô hình dự đoán churn sử dụng các thuật toán Machine Learning.
+**Mô hình tối ưu:** Gradient Boosting (AUC = 0.86)
 
-Đề xuất chiến lược giữ chân khách hàng dựa trên dữ liệu.
+### 4. Chiến lược giữ chân khách hàng
 
-🧹 1. Khám phá & Tiền xử lý dữ liệu
+**Nhóm nữ 50–60 tuổi**
+- Xây dựng gói dịch vụ tài chính – bảo hiểm – sức khỏe.
+- Hỗ trợ ưu tiên và khảo sát trải nghiệm định kỳ.
 
-Dữ liệu gồm 10.000+ khách hàng thuộc mảng retail banking.
+**Khách hàng dùng 3–4 sản phẩm**
+- Tích hợp sản phẩm thành hệ sinh thái liền mạch.
+- Tư vấn tăng gắn kết.
 
-Thực hiện làm sạch dữ liệu, xử lý giá trị thiếu, chuẩn hóa dữ liệu.
+**Khách hàng tại Đức**
+- Đơn giản hóa quy trình đăng ký.
+- Ưu đãi tháng đầu, follow-up 30 ngày đầu.
 
-Một số insight quan trọng
+## Công nghệ sử dụng
+- Python
+- Pandas, NumPy
+- Scikit-learn, XGBoost
+- Matplotlib
 
-Giới tính & Độ tuổi: nhóm nữ 50–60 tuổi có tỷ lệ churn cao nhất (~63%).
+## Kết quả
+- Mô hình Gradient Boosting đạt AUC 0.86.
+- Xác định chính xác nhóm khách hàng rủi ro cao.
+- Đề xuất chiến lược giữ chân theo từng phân khúc.
+- Tối ưu hiệu quả marketing và chăm sóc khách hàng.
 
-Danh mục sản phẩm: khách hàng dùng 3–4 sản phẩm có churn rate cao (82.7% – 100%).
+## Cấu trúc thư mục gợi ý
+```
+├── data/
+│   ├── raw_data.csv
+│   ├── cleaned_data.csv
+├── notebooks/
+│   ├── 01_EDA.ipynb
+│   ├── 02_Modeling.ipynb
+├── src/
+│   ├── preprocess.py
+│   ├── train_model.py
+│   ├── evaluate.py
+├── models/
+│   ├── best_model.pkl
+├── README.md
+├── requirements.txt
+```
 
-Địa lý: khách hàng tại Đức có churn gần gấp đôi so với Pháp & Tây Ban Nha (~32% vs. ~16%).
+## Hướng dẫn chạy dự án
 
-Nhóm khách hàng có tenure ≤ 1 năm dễ rời bỏ hơn.
+### 1. Cài đặt thư viện
+```
+pip install -r requirements.txt
+```
 
-🤖 2. Xây dựng mô hình dự đoán
+### 2. Chạy notebook phân tích
+- `notebooks/01_EDA.ipynb`
+- `notebooks/02_Modeling.ipynb`
 
-Đã thử nghiệm nhiều mô hình gồm:
+### 3. Huấn luyện mô hình
+```
+python src/train_model.py
+```
 
-Logistic Regression
+### 4. Đánh giá mô hình
+```
+python src/evaluate.py
+```
 
-Random Forest
-
-Gradient Boosting
-
-XGBoost
-
-🎯 Mô hình tối ưu
-
-Gradient Boosting
-
-AUC = 0.86 → chính xác cao trong việc nhận diện khách hàng có rủi ro rời bỏ.
-
-💡 3. Chiến lược giữ chân được đề xuất
-
-Dựa trên kết quả phân tích & mô hình dự đoán:
-
-📌 1. Cá nhân hóa dịch vụ
-
-Tập trung nhóm nữ 50–60 tuổi: cung cấp gói tài chính – sức khỏe – bảo hiểm chuyên biệt.
-
-Mở hotline ưu tiên, khảo sát định kỳ để nâng cao trải nghiệm.
-
-📌 2. Cải thiện hệ sinh thái sản phẩm
-
-Tối ưu onboarding cho nhóm sử dụng nhiều sản phẩm (3–4).
-
-Tích hợp sản phẩm thành một ecosystem liền mạch để giảm frictions.
-
-📌 3. Cải thiện trải nghiệm tại khu vực Đức
-
-Đơn giản hóa quy trình đăng ký.
-
-Miễn phí tháng đầu cho sản phẩm mới.
-
-Follow-up sát trong 30 ngày đầu.
-
-🛠️ 4. Công nghệ sử dụng
-
-Ngôn ngữ: Python
-
-Thư viện: Scikit-learn, XGBoost, Pandas, NumPy, Matplotlib
-
-Kỹ thuật: Feature Engineering, Model Evaluation (AUC, Accuracy, Recall), Hyperparameter Tuning
-
-📈 5. Kết quả
-
-Nhận diện chính xác khách hàng có nguy cơ cao.
-
-Đề xuất chiến lược giữ chân mang tính thực tiễn.
-
-Tăng hiệu quả marketing & tối ưu chi phí chăm sóc khách hàng.
+## Định hướng phát triển
+- Tối ưu mô hình bằng Optuna hoặc Bayesian Optimization.
+- Deploy API bằng FastAPI/Flask.
+- Xây dựng dashboard realtime theo dõi churn risk.
